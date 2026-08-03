@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blueberry-xd.github.io/ShiraOniInteractive/sitemap.xml
