@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Shira Oni Interactive</title>
+<meta name="description" content="Get in touch with Shira Oni Interactive.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="loader">
+    <div class="seal-mark">鬼</div>
+    <p>Preparing the Dispatch</p>
+  </div>
+
+  <div id="petals"></div>
+
+  <div class="background">
+    <div class="wash"></div>
+    <div class="wash two"></div>
+    <div class="vertical-kanji">文</div>
+  </div>
+
+  <header>
+    <nav>
+      <a href="index.html" class="logo">
+        <span class="mark">鬼</span>
+        <div>
+          <h2>Shira Oni</h2>
+          <span>Interactive</span>
+        </div>
+      </a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="games.html">Games</a></li>
+        <li><a href="about.html">Studio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="hire-btn">Work With Us</a>
+      <div class="menu">☰</div>
+    </nav>
+  </header>
+
+  <section class="contact-hero">
+    <span class="eyebrow jp" style="justify-content:center">連絡 — Contact</span>
+    <h1>Send a Dispatch</h1>
+    <p>Press, playtesting requests, collaboration, or just a note about Shattered Crown — every message reaches the founder directly.</p>
+  </section>
+
+  <section style="padding-top:40px;">
+    <div class="contact-grid">
+      <form class="contact-form seal-reveal" id="contactForm" action="https://formsubmit.co/klakshit678@gmail.com" method="POST">
+        <!-- FormSubmit configuration (no backend needed, delivers to hello@shiraoni.studio) -->
+        <input type="hidden" name="_subject" value="New dispatch from shiraoni.studio">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <!-- honeypot field to cut down on spam bots -->
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="reason">Reason for Contact</label>
+          <select id="reason" name="reason">
+            <option>General Inquiry</option>
+            <option>Press / Media</option>
+            <option>Playtesting</option>
+            <option>Collaboration</option>
+            <option>Careers</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Tell us what's on your mind." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">Seal &amp; Send</button>
+        <p class="form-note" id="formNote"></p>
+      </form>
+
+      <div class="contact-side">
+        <div class="info-box seal-reveal">
+          <h4>Email</h4>
+          <p><a href="mailto:shiraoni.studio@gmail.com">shiraoni.studio@gmail.com</a></p>
+        </div>
+        <div class="info-box seal-reveal">
+          <h4>Response Time</h4>
+          <p>Every message is read personally. Expect a reply within a few business days.</p>
+        </div>
+        <div class="info-box seal-reveal">
+          <h4>Press &amp; Media Kit</h4>
+          <p>A downloadable kit for Shattered Crown is in progress — reach out and we'll send assets directly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Shira Oni Interactive</h3>
+        <p>An independent studio making atmospheric action games, one deliberate strike at a time.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Studio</h4>
+          <a href="index.html">Home</a>
+          <a href="games.html">Games</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Current Build</h4>
+          <p>Shattered Crown</p>
+          <p>In Development</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span class="year"></span> Shira Oni Interactive. All rights reserved.</span>
+      <span>白鬼 — Built with intent.</span>
+    </div>
+  </footer>
+
+  <div class="cursor"></div>
+  <script src="script.js"></script>
+</body>
+</html>

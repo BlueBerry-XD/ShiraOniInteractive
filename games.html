@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Games — Shira Oni Interactive</title>
+<meta name="description" content="Explore the games in development at Shira Oni Interactive, starting with Shattered Crown.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="loader">
+    <div class="seal-mark">鬼</div>
+    <p>Opening the Armory</p>
+  </div>
+
+  <div id="petals"></div>
+
+  <div class="background">
+    <div class="wash"></div>
+    <div class="wash two"></div>
+    <div class="vertical-kanji">作</div>
+  </div>
+
+  <header>
+    <nav>
+      <a href="index.html" class="logo">
+        <span class="mark">鬼</span>
+        <div>
+          <h2>Shira Oni</h2>
+          <span>Interactive</span>
+        </div>
+      </a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="games.html">Games</a></li>
+        <li><a href="about.html">Studio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="hire-btn">Work With Us</a>
+      <div class="menu">☰</div>
+    </nav>
+  </header>
+
+  <section class="games-hero section-tight">
+    <span class="eyebrow jp" style="justify-content:center">作品 — Our Work</span>
+    <h1>The Games</h1>
+    <p>One title is out of the vault. The rest are still being forged — click a card to see how deep it goes.</p>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="game-grid">
+
+      <!-- Shattered Crown -->
+      <div class="game-card seal-reveal show" data-game="shattered-crown" tabindex="0" role="button" aria-haspopup="dialog">
+        <span class="crest jp">鬼</span>
+        <span class="tag">In Development</span>
+        <h3>Shattered Crown</h3>
+        <p class="genre">Action-Adventure · Souls-like</p>
+        <span class="open-cue">
+          View Details
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+
+      <!-- Locked placeholder 1 -->
+      <div class="game-card locked">
+        <span class="lock-icon">🔒</span>
+        <h3>Project Ronin</h3>
+        <p>Details Classified</p>
+      </div>
+
+      <!-- Locked placeholder 2 -->
+      <div class="game-card locked">
+        <span class="lock-icon">🔒</span>
+        <h3>Untitled</h3>
+        <p>Early Concept</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal-overlay">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" aria-label="Close">✕</button>
+
+      <div class="modal-video" id="modalVideo">
+        <img src="samurai.png" alt="Shattered Crown trailer thumbnail" class="video-poster">
+        <button class="play-btn" id="playTrailer" aria-label="Play trailer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <span class="video-label">Watch the Trailer</span>
+      </div>
+
+      <div class="modal-eyebrow">
+        <span class="jp">戦</span>
+        <span>Gameplay Overview</span>
+      </div>
+      <h2 id="modalTitle">Shattered Crown</h2>
+      <p class="modal-genre" id="modalGenre">Action-Adventure</p>
+
+      <ul class="gameplay-list" id="modalGameplayList"></ul>
+
+      <p class="synopsis-label">The Idea</p>
+      <p class="synopsis" id="modalSynopsis"></p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Shira Oni Interactive</h3>
+        <p>An independent studio making atmospheric action games, one deliberate strike at a time.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Studio</h4>
+          <a href="index.html">Home</a>
+          <a href="games.html">Games</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Current Build</h4>
+          <p>Shattered Crown</p>
+          <p>In Development</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span class="year"></span> Shira Oni Interactive. All rights reserved.</span>
+      <span>白鬼 — Built with intent.</span>
+    </div>
+  </footer>
+
+  <div class="cursor"></div>
+  <script src="script.js"></script>
+</body>
+</html>
