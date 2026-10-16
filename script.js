@@ -119,48 +119,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoBox = modalOverlay.querySelector('#modalVideo');
 
     const gameData = {
-      'shattered-crown': {
-        title: 'Shattered Crown',
-        genre: 'Action-Adventure · Souls-like · Feudal Fantasy',
-        // Replace with the real YouTube video ID for the Shattered Crown trailer
+      'shattered-dawn': {
+        title: 'Shattered Dawn',
+        genre: 'Psychological Horror · Survival Horror · Indie Game',
+        // Replace with the real YouTube video ID for the Shattered Dawn gameplay video
         // (the part after "v=" in the YouTube URL)
         youtubeId: 'M2NXpEy-gXk',
         gameplay: [
-          'Weighted, punish-and-reward sword combat built around stance-breaking and precise parries',
-          'A crumbling realm that changes shape around your choices, not just your path',
-          'Boss encounters designed as duels — one honorable, readable rhythm each',
-          'A relic system that trades power for corruption, rewriting your character over time',
-          'Hand-painted ink-wash environments that shift tone as the crown\'s influence spreads',
-          'New Game+ "Ronin Mode" that remixes boss patterns for returning players'
+          'A haunting world filled with fog, ash, and disturbing memories',
+          'Explore abandoned places hiding pieces of a forgotten truth',
+          'Face the consequences of choices that cannot be undone',
+          'Uncover a story about guilt, loss, and letting go',
+          'An atmospheric horror experience inspired by classic survival horror'
         ],
-        synopsis: 'A kingdom shatters the night its crown is stolen, and its warlords turn on one another to reclaim it. You play a nameless blade for hire pulled into the fracture, cutting a path through broken oaths and half-truths to decide who — if anyone — deserves to rule what is left. Shattered Crown pairs deliberate, high-stakes swordplay with a world that keeps score of every skirmish you win and every mercy you refuse.'
+        synopsis: [
+          "Shattered Dawn is a horror game I've been working on as a high-school student with a genuine passion for game development. I've put a lot of time and effort into bringing this project together, and there's still so much more I want to do with it.",
+          "I'm sharing my gameplay to show people what I've been building and hopefully find others who believe in the project. Developing a game while balancing school isn't easy, but I don't want to give up on something I've worked so hard on.",
+          "If you like what you see, your support, feedback, and sharing this project would genuinely mean a lot to me. I'd love to keep developing Shattered Dawn and bring the full experience to life.",
+          "Thank you for giving my game a chance. ❤️"
+        ]
       }
     };
 
     const resetVideo = () => {
       if (!videoBox) return;
       videoBox.innerHTML = `
-        <img src="samurai.png" alt="Shattered Crown trailer thumbnail" class="video-poster">
-        <button class="play-btn" id="playTrailer" aria-label="Play trailer">
+        <img src="samurai.png" alt="Shattered Dawn gameplay video thumbnail" class="video-poster">
+        <button class="play-btn" id="playTrailer" aria-label="Play gameplay video">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         </button>
-        <span class="video-label">Watch the Trailer</span>
+        <span class="video-label">Watch the Gameplay</span>
       `;
     };
 
     const playTrailer = (youtubeId) => {
       if (!videoBox) return;
       if (!youtubeId) {
-        videoBox.innerHTML = `<span class="video-label" style="position:static; text-align:center; padding:0 20px;">Trailer coming soon — add a YouTube video ID in script.js to enable playback.</span>`;
+        videoBox.innerHTML = `<span class="video-label" style="position:static; text-align:center; padding:0 20px;">Gameplay video coming soon — add a YouTube video ID in script.js to enable playback.</span>`;
         return;
       }
-      videoBox.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0" title="Shattered Crown trailer" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      videoBox.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0" title="Shattered Dawn gameplay video" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     };
 
     // delegated click so it works after resetVideo() re-renders the button
     videoBox && videoBox.addEventListener('click', (e) => {
       if (e.target.closest('#playTrailer')) {
-        playTrailer(gameData['shattered-crown'].youtubeId);
+        playTrailer(gameData['shattered-dawn'].youtubeId);
       }
     });
 
@@ -170,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       resetVideo();
       modalTitle.textContent = data.title;
       modalGenre.textContent = data.genre;
-      modalSynopsis.textContent = data.synopsis;
+      modalSynopsis.innerHTML = data.synopsis.map(p => `<span style="display:block;margin-bottom:14px">${p}</span>`).join('');
       modalList.innerHTML = data.gameplay.map(item => `<li>${item}</li>`).join('');
       modalOverlay.classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -233,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.reset();
       } catch (err) {
         if (note) {
-          note.textContent = 'Something went wrong sending your message. Please email us directly at hello@shiraoni.studio.';
+          note.textContent = 'Something went wrong sending your message. Please email us directly at shiraoni.studio@gmail.com.';
           note.classList.add('show', 'error');
         }
       } finally {
