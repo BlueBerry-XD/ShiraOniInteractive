@@ -122,9 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'shattered-dawn': {
         title: 'Shattered Dawn',
         genre: 'Psychological Horror · Survival Horror · Indie Game',
-        // Replace with the real YouTube video ID for the Shattered Dawn gameplay video
-        // (the part after "v=" in the YouTube URL)
-        youtubeId: 'M2NXpEy-gXk',
+        // YouTube video ID (the part after "youtu.be/" or "v=" in the URL)
+        youtubeId: 'xKQ9hczdDmA',
         gameplay: [
           'A haunting world filled with fog, ash, and disturbing memories',
           'Explore abandoned places hiding pieces of a forgotten truth',
@@ -141,37 +140,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    const resetVideo = () => {
+    // Just the video: embedded straight into the modal, no poster or play overlay
+    const showVideo = (id) => {
       if (!videoBox) return;
-      videoBox.innerHTML = `
-        <img src="samurai.png" alt="Shattered Dawn gameplay video thumbnail" class="video-poster">
-        <button class="play-btn" id="playTrailer" aria-label="Play gameplay video">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        </button>
-        <span class="video-label">Watch the Gameplay</span>
-      `;
+      videoBox.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1" title="Shattered Dawn gameplay video" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
     };
 
-    const playTrailer = (youtubeId) => {
-      if (!videoBox) return;
-      if (!youtubeId) {
-        videoBox.innerHTML = `<span class="video-label" style="position:static; text-align:center; padding:0 20px;">Gameplay video coming soon — add a YouTube video ID in script.js to enable playback.</span>`;
-        return;
-      }
-      videoBox.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0" title="Shattered Dawn gameplay video" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-    };
-
-    // delegated click so it works after resetVideo() re-renders the button
-    videoBox && videoBox.addEventListener('click', (e) => {
-      if (e.target.closest('#playTrailer')) {
-        playTrailer(gameData['shattered-dawn'].youtubeId);
-      }
-    });
+    // removing the iframe stops playback
+    const clearVideo = () => { if (videoBox) videoBox.innerHTML = ''; };
 
     const openModal = (key) => {
       const data = gameData[key];
       if (!data) return;
-      resetVideo();
+      showVideo(data.youtubeId);
       modalTitle.textContent = data.title;
       modalGenre.textContent = data.genre;
       modalSynopsis.innerHTML = data.synopsis.map(p => `<span style="display:block;margin-bottom:14px">${p}</span>`).join('');
@@ -183,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = () => {
       modalOverlay.classList.remove('open');
       document.body.style.overflow = '';
-      setTimeout(resetVideo, 400);
+      clearVideo();
     };
 
     document.querySelectorAll('[data-game]').forEach(card => {
