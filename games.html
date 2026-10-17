@@ -2,11 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Games — Shira Oni Interactive</title>
 <meta name="description" content="Explore the games in development at Shira Oni Interactive, starting with Shattered Dawn.">
 <link rel="stylesheet" href="style.css">
+
+<!-- Video player styles (kept here so style.css doesn't need changes) -->
+<style>
+  .modal-video { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+  .modal-video .video-poster { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .modal-video .video-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    z-index: 3;
+  }
+  .modal-video.playing .video-poster,
+  .modal-video.playing .play-btn,
+  .modal-video.playing .video-label { display: none; }
+</style>
 </head>
 <body>
 
@@ -15,9 +31,9 @@
     <p>Opening the Armory</p>
   </div>
 
-  <div id="petals"></div>
+  <div id="petals" aria-hidden="true"></div>
 
-  <div class="background">
+  <div class="background" aria-hidden="true">
     <div class="wash"></div>
     <div class="wash two"></div>
     <div class="vertical-kanji">作</div>
@@ -34,7 +50,7 @@
       </a>
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="games.html">Games</a></li>
+        <li><a href="games.html" aria-current="page">Games</a></li>
         <li><a href="about.html">Studio</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -86,9 +102,14 @@
     <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button class="modal-close" aria-label="Close">✕</button>
 
-      <div class="modal-video" id="modalVideo">
-        <img src="samurai.png" alt="Shattered Dawn gameplay video thumbnail" class="video-poster">
-        <button class="play-btn" id="playTrailer" aria-label="Play gameplay video">
+      <!-- The video: thumbnail comes from the YouTube video itself -->
+      <div class="modal-video" id="modalVideo" data-video-id="xKQ9hczdDmA">
+        <img
+          src="https://img.youtube.com/vi/xKQ9hczdDmA/maxresdefault.jpg"
+          alt="Shattered Dawn gameplay video thumbnail"
+          class="video-poster"
+          onerror="this.onerror=null;this.src='https://img.youtube.com/vi/xKQ9hczdDmA/hqdefault.jpg';">
+        <button class="play-btn" id="playTrailer" aria-label="Play Shattered Dawn gameplay video">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         </button>
         <span class="video-label">Watch the Gameplay</span>
@@ -135,7 +156,48 @@
     </div>
   </footer>
 
-  <div class="cursor"></div>
+  <div class="cursor" aria-hidden="true"></div>
   <script src="script.js"></script>
+
+  <!-- YouTube player: loads on click, removed when the modal closes -->
+  <script>
+    (function () {
+      var box = document.getElementById('modalVideo');
+      var playBtn = document.getElementById('playTrailer');
+      if (!box || !playBtn) return;
+
+      function playVideo() {
+        if (box.querySelector('iframe')) return;
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.videoId +
+                     '?autoplay=1&rel=0&modestbranding=1';
+        iframe.title = 'Shattered Dawn gameplay video';
+        iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+        iframe.allowFullscreen = true;
+        iframe.className = 'video-frame';
+        box.appendChild(iframe);
+        box.classList.add('playing');
+      }
+
+      function resetVideo() {
+        var iframe = box.querySelector('iframe');
+        if (iframe) iframe.remove();
+        box.classList.remove('playing');
+      }
+
+      playBtn.addEventListener('click', playVideo);
+
+      // Stop the video whenever the modal closes, without depending on script.js internals
+      var overlay = document.querySelector('.modal-overlay');
+      var closeBtn = document.querySelector('.modal-close');
+      if (closeBtn) closeBtn.addEventListener('click', resetVideo);
+      if (overlay) overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) resetVideo();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') resetVideo();
+      });
+    })();
+  </script>
 </body>
 </html>
